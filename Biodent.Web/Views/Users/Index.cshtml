@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Biodent.Models.UsersModel>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <!--Header Button Region-->
+            <div class="card-header">
+                <div class="col-md-2">
+                    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary far fa-plus-square" })
+                </div>
+
+            </div>
+            <!--/.Header Button Region-->
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <table id="example1" class="table table-sm table-hover dataTable" role="grid">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                User Name
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Email
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Phone No
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Password
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                UserLevel
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Created Date
+                            </th>
+
+                            <th class="sorting_asc_disabled sorting_desc_disabled" tabindex="0" rowspan="1" colspan="1">
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.UsersName)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Password)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserLevel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                                </td>
+
+                                <td class="dtBtnPosition">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.UsersID }, new { @class = "btn btn-primary fas fa-edit" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UsersID }, new { @class = "btn btn-danger fas fa-times-circle" })
+                                    @*<i class="fas fa-delete"></i>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //$("#example1").DataTable().fnDestroy();
+        $("#example1").dataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            destroy: true,
+            //paging:false,
+            //columnDefs: [
+            //    {
+            //        targets: [3],
+            //        render: function (data, type, row) {
+            //            //return data == '1' ? 'free' : 'paid'
+            //            switch (data) {
+            //                case "1": return 'SuperUser'; break;
+            //                case "2": return 'Public'; break;
+            //                case "3": return 'Admin'; break;
+            //                case "4": return 'Verification Officer'; break;
+            //                case "5": return 'Enrollment Officer'; break;
+            //                default: return 'N/A';
+            //            }
+            //        }
+            //    }
+            //],
+
+        });
+    });
+</script>

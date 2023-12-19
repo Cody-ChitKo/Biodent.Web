@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Biodent.Models.InvoiceModel>
+
+@{
+    ViewBag.Title = "NewOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-header">
+                <div class="col-md-2">
+                    @Html.ActionLink("Add Order", "CreateAdmin", null, new { @class = "btn btn-primary far fa-plus-square" })
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <table id="example1" class="table table-sm dataTable" role="grid" aria-describedby="example1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                LAB Sheet No
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Patient Name
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Age
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Gender
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                TeethShade
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Doctor Name
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                TotalAmount
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Discount
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Issue Date
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Invoice Date
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Status
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.InvNo)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PatientName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.P_Age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TeethShade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DoctorName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Discount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IssueDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Detail...", "Details", new { id = item.InvoiceID }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>

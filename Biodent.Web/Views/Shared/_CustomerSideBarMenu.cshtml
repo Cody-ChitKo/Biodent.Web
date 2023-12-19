@@ -1,0 +1,100 @@
+﻿<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar sidebar-menu flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+        with font-awesome or any other icon font library -->
+        <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    User Management
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+                <li class="nav-item active">
+                    <a href="@Url.Action("ServiceView","Service")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Biodent Services</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("UserProfile","Customer")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Profile</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Doctor")" class="nav-link">
+                        @*<i class="nav-icon fas fa-solid fa-doctor"></i>*@
+                        <i class="nav-icon fas fa-light fa-user-doctor"></i>
+                        <p class="text">Doctor List</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("ToothPrice","SubProthesis")" class="nav-link">
+                        <i class="nav-icon fas fa-solid fa-tooth"></i>
+                        @*<i class="fa-solid fa-tooth"></i>*@
+                        <p class="text">Tooth Price</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Order")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Orders History</p>
+                    </a>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("BalanceOrder","Order")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Balance Orders</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("PaymentHistory","Payment")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Payment History</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Purchases")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Purchase List</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Review")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Review</p>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+
+        <li class="nav-item active">
+            <a href="@Url.Action("ChatList","Chats")" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-comment"></i>
+
+                <p class="text">Chat</p>
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a href="@Url.Action("PackageView","Package")" class="nav-link">
+                <i class="nav-icon fas fa-th-large text-danger"></i>
+
+                <p class="text">Package</p>
+            </a>
+        </li>
+
+    </ul>
+</nav>
+<!-- /.sidebar-menu -->

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Biodent.Models.PackageModel>
+
+@{
+    ViewBag.Title = "Package";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div class="card-body">
+
+    
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-5">
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <img src="data:image/png;base64,@(@Html.DisplayFor(modelItem => item.PKImageUrl))" alt="Package Image" />
+                    </div>
+
+                    <p class="text-muted text-center">Yangon</p>
+
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Package Name</b> <a class="float-right">@Html.DisplayFor(modelItem => item.PackageName)</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Description</b> <a class="float-right">@Html.DisplayFor(modelItem => item.Description)</a>
+                        </li>
+
+                        <li class="list-group-item">
+                            <b>ကျသင့်ငွေ </b> <a class="float-right">@Html.DisplayFor(modelItem => item.PKPrice)</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>ပြန်ရငွေ </b> <a class="float-right">@Html.DisplayFor(modelItem => item.GetPKAmount)</a>
+                        </li>
+                    </ul>
+                    @Html.ActionLink("Buy", "BuyPackage", new { PackageId = item.PackageId }, new { @class = "btn btn-primary btn-block" })
+                   @* <a href="@Url.Action("AddWallet","Wallet")" class="btn btn-primary btn-block"><b>Buy</b></a>*@
+                    <a href="@Url.Action("GiftCardView","GiftCard")" class="btn btn-primary btn-block"><b>လက်ဆောင်ပစ္စည်းများ</b></a>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <br />
+
+        <br />
+    }
+
+    
+</div>

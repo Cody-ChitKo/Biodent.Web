@@ -1,0 +1,70 @@
+﻿@model Biodent.Models.BalanceOrderModel
+
+@{
+    ViewBag.Title = "Balance Order";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<table id="example1" class="table table-sm dataTable">
+    <thead>
+        <tr role="row">
+            <th class="sorting">LAB Sheet No</th>
+            <th>Order Date</th>
+            <th>Patient Name</th>
+            <th>Doctor Name</th>
+            <th>Discount</th>
+            <th>NetAmount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.completeViewModels)
+        {
+            <tr role="row" class="odd">
+                <td class="sorting_1">@Html.DisplayFor(modelItem => item.InvNo)</td>
+                <td>@Html.DisplayFor(modelItme=>item.InvDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Discount) </td>
+                <td>@Html.DisplayFor(modelItem => item.NetAmount)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>@Html.DisplayFor(model => model.TotalNetAmount)</th>
+        </tr>
+
+    </tfoot>
+</table>
+
+
+
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/Scripts/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/Scripts/plugins/fontawesome-free/css/all.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>

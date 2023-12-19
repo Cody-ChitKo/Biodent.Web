@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Biodent.Models.AccountLevelModel>
+
+@{
+    ViewBag.Title = "AccountLevel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary far fa-plus-square" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountLevel)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountLevel)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccountLevel_Id }, new { @class = "btn btn-primary fas fa-edit" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AccountLevel_Id }, new { @class = "btn btn-danger fas fa-times-circle" })
+            </td>
+        </tr>
+    }
+
+</table>

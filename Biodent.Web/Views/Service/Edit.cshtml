@@ -1,0 +1,100 @@
+﻿@model Biodent.Models.ServiceModel
+
+@{
+    ViewBag.Title = "Prothesis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Prothesis</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ServiceId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ServiceTypeId, new SelectList(Model.ServiceTypes as System.Collections.IEnumerable, "ServiceTypeId", "ServiceType"), "--Choose ServiceType--", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceHeader, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ServiceHeader, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ServiceHeader, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ServiceDescription, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextAreaFor(model => model.ServiceDescription, new { htmlAttributes = new { @class = "form-control", @id = "summernote" } })
+                @Html.ValidationMessageFor(model => model.ServiceDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServicePrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ServicePrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ServicePrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceImage, htmlAttributes: new { @class = "control-label" })
+            <div class="custom-file">
+                <input type="file" name="ServiceImage" id="customFile" class="custom-file-input" />
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", "Prothesis", new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+        // Summernote
+        $('#summernote').summernote()
+
+    })
+
+    $("#customFile").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    var reader = new FileReader();
+    var fileName;
+    $('[id*=customFile]').change(function () {
+        if (typeof (FileReader) != "undefined") {
+            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                if (regex.test(file[0].name.toLowerCase())) {
+                    fileName = file[0].name;
+                    reader.readAsDataURL(file[0]);
+                } else {
+                    alert(file[0].name + " is not a valid image file.");
+                    $('#customFile').val('No selected file');
+                    return false;
+                }
+            });
+        } else {
+            alert("This browser does not support HTML5 FileReader.");
+        }
+    });
+
+</script>

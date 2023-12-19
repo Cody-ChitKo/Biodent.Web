@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Biodent.Models.DepartmentIncomeModel>
+@{
+    ViewBag.Title = "IncomeBy Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Income By Department</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-sm table-hover">
+                    <thead>
+                        <tr role="row">
+                            <th>
+                                Department Name
+                            </th>
+                            <th>
+                                Qty
+                            </th>
+                            <th>
+                                Net Amount
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.DepartmentName)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Qty)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NetAmount)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <!-- /.col -->
+</div>
+
+
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+<link href="~/Scripts/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    });
+
+</script>

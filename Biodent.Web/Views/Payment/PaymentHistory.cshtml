@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Biodent.Models.PaymentModel>
+
+@{
+    ViewBag.Title = "PaymentHistory";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h3>Payment History</h3>
+
+<table id="example1" class="table table-sm dataTable">
+    <tr>
+        <th>
+            LAB Sheet No
+        </th>
+        <th>
+            NetAmount
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            Balance
+        </th>
+        <th>
+            PayNo
+        </th>
+        <th>
+            PayDate
+        </th>
+        <th>
+            PayAmount
+        </th>
+        <th>
+            Remark
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/Scripts/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/Scripts/plugins/fontawesome-free/css/all.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>

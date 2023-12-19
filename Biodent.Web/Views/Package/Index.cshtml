@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Biodent.Models.PackageModel>
+
+@{
+    ViewBag.Title = "Package";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <!--Header Button Region-->
+            <div class="card-header">
+                <div class="col-md-2">
+                    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary far fa-plus-square" })
+                </div>
+
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <table class="table table-sm">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting">
+                                Package Name
+                            </th>
+                            <th class="sorting">
+                                Description
+                            </th>
+
+                            <th>
+                                Package Price
+                            </th>
+
+                            <th>
+                                Get PackageAmount
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.PackageName)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PKPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GetPKAmount)
+                                </td>
+
+                                <td class="dtBtnPosition">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.PackageId }, new { @class = "btn btn-primary fas fa-edit" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.PackageId }, new { @class = "btn btn-danger fas fa-times-circle" })
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <!-- /.card -->
+            <!-- /.col -->
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //$("#example1").DataTable().fnDestroy();
+        $("#example2").dataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            destroy: true,
+            //paging:false,
+            //columnDefs: [
+            //    {
+            //        targets: [3],
+            //        render: function (data, type, row) {
+            //            //return data == '1' ? 'free' : 'paid'
+            //            switch (data) {
+            //                case "1": return 'SuperUser'; break;
+            //                case "2": return 'Public'; break;
+            //                case "3": return 'Admin'; break;
+            //                case "4": return 'Verification Officer'; break;
+            //                case "5": return 'Enrollment Officer'; break;
+            //                default: return 'N/A';
+            //            }
+            //        }
+            //    }
+            //],
+
+        });
+    });
+</script>

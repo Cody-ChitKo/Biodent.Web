@@ -1,0 +1,686 @@
+﻿@model Biodent.Models.InvoiceModel
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+@using (Html.BeginForm("Create", "Order", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+     <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Order</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputName">Patient Name</label>
+                                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new {@id="inputName", @class = "pname form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Patient Age</label>
+                                @Html.EditorFor(model => model.P_Age, new { htmlAttributes = new {@id="inputName", @class = "page form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Gender</label>
+                                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new {@id="inputName", @class = "gender form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Teeth Shade</label>
+                                @Html.EditorFor(model => model.TeethShade, new { htmlAttributes = new {@id="inputName", @class = "teethshade form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputProjectLeader">Tooth Simple</label>
+                                <input type="file" name="ImageUpload" id="toothsimple" class="btn btn-info" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputName">Doctor Name</label>
+                                @Html.DropDownListFor(model => model.DoctorName, new SelectList(Model.Doctors as System.Collections.IEnumerable, "DoctorID", "DoctorName"), "-", new { @id = "ddlDoctor", @class = "doctor form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Doctor's Instruction</label>
+@*                                @Html.TextAreaFor(model => model.Remark, new { htmlAttributes = new {@id="inputDescription", @class = "remark form-control" } })
+*@                                <textarea id="inputDescription" class="remark form-control" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Materials</label>
+                                @Html.EditorFor(model => model.Materials, new { htmlAttributes = new {@id="inputName", @class = "material form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputClientCompany">Issue Date</label>
+                                @Html.EditorFor(model => model.IssueDate, new { htmlAttributes = new { @class = "issueDate form-control" } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputProjectLeader">Total Amount</label>
+                                @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @readonly = true, @id = "TotalAmount", @class = "totalAmount form-control" } })
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+     
+    <div id="myModal" class="modal fade" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Tooth No</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <!--Upper-->
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="Upper" value="Upper">
+                            <label class="form-check-label" for="Upper">Upper</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="18" value="18">
+                            <label class="form-check-label" for="18">18</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="17" value="17">
+                            <label class="form-check-label" for="17">17</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="16" value="16">
+                            <label class="form-check-label" for="16">16</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="15" value="15">
+                            <label class="form-check-label" for="15">15</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="14" value="14">
+                            <label class="form-check-label" for="14">14</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="13" value="13">
+                            <label class="form-check-label" for="13">13</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="12" value="12">
+                            <label class="form-check-label" for="12">12</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="11" value="11">
+                            <label class="form-check-label" for="11">11</label>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="21" value="21">
+                            <label class="form-check-label" for="21">21</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="22" value="22">
+                            <label class="form-check-label" for="22">22</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="23" value="23">
+                            <label class="form-check-label" for="23">23</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="24" value="24">
+                            <label class="form-check-label" for="24">24</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="25" value="25">
+                            <label class="form-check-label" for="25">25</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="26" value="26">
+                            <label class="form-check-label" for="26">26</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="27" value="27">
+                            <label class="form-check-label" for="27">27</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="28" value="28">
+                            <label class="form-check-label" for="28">28</label>
+                        </div>
+
+                    </div>
+                    <br />
+                    <!--Lower-->
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="Lower" value="Lower">
+                            <label class="form-check-label" for="Lower">Lower</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="48" value="48">
+                            <label class="form-check-label" for="48">48</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="47" value="47">
+                            <label class="form-check-label" for="47">47</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="46" value="46">
+                            <label class="form-check-label" for="46">46</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="45" value="45">
+                            <label class="form-check-label" for="45">45</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="44" value="44">
+                            <label class="form-check-label" for="44">44</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="43" value="43">
+                            <label class="form-check-label" for="43">43</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="42" value="42">
+                            <label class="form-check-label" for="42">42</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="41" value="41">
+                            <label class="form-check-label" for="41">41</label>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="31" value="31">
+                            <label class="form-check-label" for="31">31</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="32" value="32">
+                            <label class="form-check-label" for="32">32</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="33" value="33">
+                            <label class="form-check-label" for="33">33</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="34" value="34">
+                            <label class="form-check-label" for="34">34</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="35" value="35">
+                            <label class="form-check-label" for="35">35</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="36" value="36">
+                            <label class="form-check-label" for="36">36</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="37" value="37">
+                            <label class="form-check-label" for="37">37</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="toothno" id="38" value="38">
+                            <label class="form-check-label" for="38">38</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="addtooth" data-dismiss="modal" aria-label="Close">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding:10px 0; text-align:right">
+        <button type="button" value="add" class="btn btn-success" data-toggle="modal" id="displayModal" data-target="#myModal" onmouseover="isCheck()">Add ToothNo</button>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Order Items</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-sm">
+                                <tr>
+                                    <td>Prothesis</td>
+                                    <td>Sub Prothesis</td>
+                                    <td>ToothNo</td>
+                                    <td>Price</td>
+                                    <td>Qty</td>
+                                    <td>Amount</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                                @*@foreach (var saleItem in Model.invDetail)*@
+                                @for (int i = 0; i < Model.invDetail.Count; i++)
+                                {
+                                    <tr class="mycontainer" id="mainrow">
+                                        <td>
+                                            @Html.DropDownListFor(x => Model.invDetail[i].ProthesisID, new SelectList(Model.ProthesisLiv as System.Collections.IEnumerable, "ProthesisID", "ProthesisName"), "-", new { @id = "ddlProthesis", @class = "pid form-control" })
+                                        </td>
+                                        <td>
+                                            @Html.DropDownListFor(x => Model.invDetail[i].SubProID, new SelectList(Model.SubProthesisLiv as System.Collections.IEnumerable, "SubProID", "SubProthesisName"), "-", new { @id = "ddlSubProID", @class = "spid form-control" })
+                                        </td>
+                                        <td>
+                                            @Html.EditorFor(x => Model.invDetail[i].ToothNo, new { htmlAttributes = new { @id = "txtToothNo", @readonly = true, @class = "txttoothno form-control" } })
+                                        </td>
+                                        <td style="width:10%">
+                                            @Html.EditorFor(x => Model.invDetail[i].Price, new { htmlAttributes = new { @readonly = true, @id = "price", @class = "txtprice form-control" } })
+                                        </td>
+                                        <td style="width: 10%">
+                                            @Html.EditorFor(x => Model.invDetail[i].Qty, new { htmlAttributes = new { @readonly = true, @id = "qty", @class = "qty form-control" } })
+                                        </td>
+                                        <td style="width: 10%">
+                                            @Html.EditorFor(x => Model.invDetail[i].Amount, new { htmlAttributes = new { @id = "amount", @readonly = true, @class = "amount form-control" } })
+                                        </td>
+
+                                        <td>
+                                            @*<i class="fas fa-shopping-cart"></i><input type="button" id="add-row" value="Add" style="width:80px" class="btn btn-success fas fa-shopping-cart" />*@
+                                            <button type="button" id="add-row" value="Add" class="btn btn-primary">
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </table>
+                            <div id="orderItems">
+                                <table class="table table-responsive" id="orderdetailsItems">
+                                    <tbody id="table-body"></tbody>
+                                </table>
+                                <span id="orderItemError" style="color:red"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                        <div style="padding:10px 0; text-align:right">
+                                <input id="btnSubmit" type="button" value="Send Order" class="btn btn-success" style="padding:10px 20px" />
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <link href="~/Scripts/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <script>
+
+        $(document).ready(function () {
+            $('#ddlProthesis').change(function () {
+                var prothesisid = $(this).val();
+                $('.spid').empty();
+
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '@Url.Action("SubProthesisByProID", "SubProthesis")',
+                        dataType: 'json',
+                        data: { id: prothesisid },
+                        success: function (data) {
+                            console.log(data);
+                            debugger;
+                            $.each(data, function (index, row) {
+                                $(".spid").append("<option value='" + row.value + "'>" + row.text + "</option>")
+                            });
+                        },
+                        error: function (req, status, error) {
+                            alert(error);
+                        }
+                    });
+            });
+        });
+
+        $('.spid').change(function () {
+            var id = $(".spid").val();
+            var txtPrice = $("#price");
+            //debugger;
+            if (id) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: '/SubProthesis/GetPrice',
+                        data: { id: id }, // Use an object here
+                        success: function (data) {
+                            txtPrice.val(data);
+                            isCheck();
+                        }
+                    });
+            }
+            else {
+                txtPrice.val('');
+            }
+        });
+        //issueDate
+        $(function () {
+            var issuedate = new Date();
+            var myissuedate = new Date(issuedate.getFullYear(), issuedate.getMonth(), issuedate.getDate() + 5).toISOString().slice(0, 10);
+            $(".issueDate").val(myissuedate);
+
+            $(".issueDate").datepicker();
+
+            $(".issueDate").on("change", function () {
+
+                var chooseDate = $(".issueDate").val();
+                if (Date.parse(myissuedate) > Date.parse(chooseDate)) {
+                    alert("invalid date");
+                    $(".issueDate").val(myissuedate);
+                }
+
+            });
+        });
+
+        function saveImage() {
+            var imagefile = $("#toothsimple").get(0).files;
+            var data = new FormData;
+            data.append("ImageUpload", imagefile[0]);
+            data.append("DoctorName", $('.doctor').find('option:selected').text());
+
+            $.ajax({
+                async: true,
+                type: 'POST',
+                url: '/Invoice/ImageFileUpload',
+                data: data,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (data) {
+                },
+                error: function (data) {
+
+                }
+            });
+        }
+
+        function isCheck() {
+            if (document.getElementById("price").value == 0.00) {
+                document.getElementById('displayModal').setAttribute("disabled", "disabled");
+            }
+            else {
+                document.getElementById('displayModal').removeAttribute("disabled");
+            }
+        }
+
+        $('#qty').on('change', function () {
+
+            var txtPrice = document.getElementById("price").value;
+            var txtQty = document.getElementById("qty").value;
+            var txtAmount = document.getElementById("amount");
+            parseInt($('#qty').val());
+            parseInt($('#price').val());
+            parseInt($('#amount').val());
+            //alert(txtPrice);
+            if (txtQty != 0) {
+                txtAmount.value = (txtPrice * txtQty);
+            } else {
+                $(txtAmount).val('');
+            }
+        })
+
+        $(document).ready(function () {
+            //Add button click event
+            $('#add-row').click(function () {
+                //validation and add order items
+                var isAllValid = true;
+
+                if ($('.txttoothno').val() == null) {
+                    isAllValid = false;
+                    $('.toothno').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('.toothno').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('.pid').val() == null) {
+                    isAllValid = false;
+                    $('.pid').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('.pid').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if ($('.spid').val() == null) {
+                    isAllValid = false;
+                    $('.spid').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('.spid').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('.qty').val() != '' && (parseInt($('.qty').val()) || 0))) {
+                    isAllValid = false;
+                    $('.qty').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('.qty').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (!($('.amount').val() != '' && !isNaN($('.amount').val().trim()))) {
+                    isAllValid = false;
+                    $('.amount').siblings('span.error').css('visibility', 'visible');
+                }
+                else {
+                    $('.amount').siblings('span.error').css('visibility', 'hidden');
+                }
+
+                if (isAllValid) {
+                    var $newRow = $('#mainrow').clone().removeAttr('id');
+                    $('.pid', $newRow).val($('#ddlProthesis').val());
+                    $('.spid', $newRow).val($("#ddlSubProID").val());
+                    //Replace add button with remove button
+                    $('#add-row', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-danger');
+
+                    //remove id attribute from new clone row
+
+                    $('.pid, .spid, .txttoothno, .txtprice, .qty, .amount, #add-row', $newRow).removeAttr('id');
+
+                    $('span.error', $newRow).remove();
+
+                    //append clone row
+                    $('#orderdetailsItems').append($newRow);
+
+                    //Show TotalAmount
+                    ShowTotalAmount($('.amount').val(), "add");
+
+                    //clear select data
+                    $(' #txtToothNo,#price,#qty,#amount').val('');
+                    //$('.pid').val('');
+                    //$('.spid').val('');
+                    $('#orderItemError').empty();
+
+                }
+                $('input[name="toothno"]:checked').each(function () { this.checked = false; });
+            })
+
+            function ShowTotalAmount(amount, text) {
+                var totalAmount = parseFloat($('#TotalAmount').val());
+                if (text == "add") {
+                    totalAmount += parseFloat(amount);
+                }
+                else if (text == "remove") {
+                    totalAmount -= parseFloat(amount);
+                }
+                $('#TotalAmount').val(totalAmount);
+            }
+
+            //remove button click event
+            $('#orderdetailsItems').on('click', '.remove', function () {
+                $(this).parents('tr').remove();
+                ShowTotalAmount($('.amount').val(), "remove");
+            });
+
+            $('#btnSubmit').click(function () {
+                var isAllValid = true;
+
+                $('#orderItemError').text('');
+                var saleItemList = [];
+                var errorItemCount = 0;
+                $('#orderdetailsItems tbody tr').each(function (index, ele) {
+                    if ((parseInt($('.qty', this).val()) || 0) == 0 || $('.amount', this).val() == "") {
+                        errorItemCount++;
+                        $(this).addClass('error');
+                    } else {
+                        var orderItem = {
+                            ToothNo: $('.txttoothno', this).val(),
+                            ProthesisID: $('.pid', this).val(),
+                            SubProID: $('.spid', this).val(),
+                            Price: parseFloat($('.txtprice', this).val()),
+                            Qty: parseInt($('.qty', this).val()),
+                            Amount: parseFloat($('.amount', this).val())
+                        }
+                        saleItemList.push(orderItem);
+                    }
+                })
+
+                if (errorItemCount > 0) {
+                    $('#orderItemError').text(errorItemCount + " invalid entry in order item list.");
+                    isAllValid = false;
+                }
+
+                if (saleItemList.length == 0) {
+                    $('#orderItemError').text('At least 1 order item required.');
+                    isAllValid = false;
+                }
+
+                if (isAllValid) {
+                    var invdata = {
+                        IssueDate: $('.issueDate').val().trim(),
+                        DoctorName: $('.doctor').find('option:selected').text(),
+                        PatientName: $('.pname').val().trim(),
+                        P_Age: $('.page').val().trim(),
+                        Gender: $('.gender').val().trim(),
+                        TeethShade: $('.teethshade').val().trim(),
+                        TotalAmount: $('.totalAmount').val().trim(),
+                        Remark: $('.remark').val().trim(),
+                        Materials: $('.material').val().trim(),
+                        invDetail: saleItemList
+                    }
+                    //saveImage();
+                    $(this).val('Please wait...');
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Order/Create',
+                        data: { invoice: invdata }, // Use an object here
+                        //data: JSON.stringify(invdata),//JSON.stringify(dataobject),
+                        //contentType: "application/json;charset=utf-8",
+                        //dataType: "json",
+                        success: function (data) {
+                            if (data.status) {
+                                alert('Successfully saved');
+                                //here we will clear the form
+                                saleItemList = [];
+                                $('#orderdetailsItems').empty();
+
+                                $('.issueDate').val('');
+                                $('.pname').val('');
+                                $('.page').val('');
+                                $('.gender').val('');
+                                $('.teethshade').val('');
+                                $('.totalAmount').val('');
+                                $('.remark').val('');
+                                $('.doctor').val('');
+                                saveImage();
+                            }
+                            else {
+                                alert('Error');
+                            }
+                            $('#btnSubmit').val('Send Order');
+                            window.location.href = "@Url.Action("Index", "Order")";
+                        },
+                        error: function (error) {
+                            console.log(error);
+                            $('#btnSubmit').val('Send Order');
+                        }
+                    });
+                }
+
+            });
+        });
+
+        $(".addtooth").click(function () {
+            var txtToothNo = document.getElementById("txtToothNo");
+            var txtQty = document.getElementById("qty");
+
+            var toothNoArr = new Array();
+            $('input[name="toothno"]:checked').each(function () {
+                toothNoArr.push(this.value);
+            });
+
+            txtToothNo.value = toothNoArr;
+            txtQty.value = toothNoArr.length;
+
+            var txtPrice = document.getElementById("price");
+            var txtAmount = document.getElementById("amount");
+
+            parseInt($('#qty').val());
+            parseInt($('#price').val());
+            parseInt($('#amount').val());
+
+            if (txtQty.value != 0) {
+                txtAmount.value = (txtPrice.value * txtQty.value);
+            } else {
+                $(txtAmount).val('');
+            }
+
+        });
+
+        var reader = new FileReader();
+        var fileName;
+        $('[id*=toothsimple]').change(function () {
+            if (typeof (FileReader) != "undefined") {
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                $($(this)[0].files).each(function () {
+                    var file = $(this);
+                    if (regex.test(file[0].name.toLowerCase())) {
+                        fileName = file[0].name;
+                        alert(fileName);
+                        reader.readAsDataURL(file[0]);
+                    } else {
+                        alert(file[0].name + " is not a valid image file.");
+                        $('#toothsimple').val('No selected file');
+                        return false;
+                    }
+                });
+            } else {
+                alert("This browser does not support HTML5 FileReader.");
+            }
+        });
+    </script>
+   
+}

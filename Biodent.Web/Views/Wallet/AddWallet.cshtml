@@ -1,0 +1,65 @@
+﻿@model Biodent.Models.WalletModel
+@{
+    ViewBag.Title = "Wallet";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddWallet", "Wallet", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">Payment Method</label>
+        <div class="col-sm-6">
+            @Html.DropDownListFor(model => model.PayMethodId, new SelectList(Model.PayMethods as System.Collections.IEnumerable, "PayMethodId", "PayMethodName"), "--Choose PayMethod--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PayMethodId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">Wallet Amount</label>
+        <div class="col-sm-6">
+            @Html.EditorFor(model => model.WalletAmount, new { htmlAttributes = new { @class = "form-control"} })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.ss_Image, htmlAttributes: new { @class = "control-label" })
+        <div class="custom-file">
+            <input type="file" name="ss_Image" id="customFile" class="custom-file-input" />
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+
+}
+
+<script>
+    $("#customFile").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    var reader = new FileReader();
+    var fileName;
+    $('[id*=customFile]').change(function () {
+        if (typeof (FileReader) != "undefined") {
+            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                if (regex.test(file[0].name.toLowerCase())) {
+                    fileName = file[0].name;
+                    reader.readAsDataURL(file[0]);
+                } else {
+                    alert(file[0].name + " is not a valid image file.");
+                    $('#customFile').val('No selected file');
+                    return false;
+                }
+            });
+        } else {
+            alert("This browser does not support HTML5 FileReader.");
+        }
+    });
+</script>

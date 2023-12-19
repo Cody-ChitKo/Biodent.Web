@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Biodent.Models.InvoiceModel>
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<p>
+    @Html.ActionLink("New Order", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table id="example1" class="table table-sm dataTable">
+    <thead>
+        <tr role="row">
+            <th class="sorting">LAB Sheet No</th>
+            <th>Patient Name</th>
+            <th>Gender</th>
+            <th>TeethShade</th>
+            <th>Doctor Name</th>
+            <th>TotalAmount</th>
+            <th>Discount</th>
+            <th>NetAmount</th>
+            <th>Duration Day</th>
+            <th>Status</th>
+            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 100.55px;" aria-label="Browser: activate to sort column ascending">View Detail </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr role="row" class="odd">
+                <td class="sorting_1">@Html.DisplayFor(modelItem => item.InvNo)</td>
+                <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.TeethShade)</td>
+                <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Discount) </td>
+                <td>@Html.DisplayFor(modelItem => item.NetAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.RemainingDay)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                <td>
+                    @Html.ActionLink("Detail...", "Details", new { id = item.InvoiceID }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID }, new { @class = "btn btn-danger fas fa-times-circle" })
+                    @Html.ActionLink("Review...", "Create", "Review", new { InvoiceID = item.InvoiceID, InvNo = item.InvNo }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/Scripts/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/Scripts/plugins/fontawesome-free/css/all.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
+

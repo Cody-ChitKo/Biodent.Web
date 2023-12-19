@@ -1,0 +1,102 @@
+﻿@model Biodent.Web.Models.ChatingModel
+@{
+    ViewBag.Title = "Chats";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@using (Html.BeginForm("ChatBox", "Chats", FormMethod.Post, new { onsubmit = "return sendMessage();" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-body chat-container">
+                <div class="form-group" id="messageContainer">
+                    @foreach (var item in Model.Messages)
+                    {
+                        @* @Html.DisplayFor(modelItem => item.UserName) *@
+                        @Html.DisplayFor(modelItem => item.MessageText, new { htmlAttributes = new { @class = "form-control" } })
+
+                        <br />
+                    }
+                    @* <textarea id="inputDescription" class="messageText form-control" rows="8" disabled>
+                @foreach (var item in Model.Messages)
+                {
+                @Html.DisplayFor(modelItem => item.MessageText)
+                }
+                </textarea> *@
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="card-body">
+            <div class="col-md-11">
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.message.FromUsersId)
+                    @Html.EditorFor(model => model.message.MessageText, new { htmlAttributes = new { @id = "inputMessageText", @class = "form-control", autocomplete = "off" } })
+
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input type="submit" value="Send" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        .chat-container {
+            max-height: 300px; /* Set the maximum height for the chat container */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.12/signalr.min.js"></script>
+
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+        connection.on("ReceiveMessage", function (user, message) {
+            // Handle the received message
+            console.log(user + ": " + message);
+            $("#messageContainer").append(user + ": " + message + "<br/>");
+
+            // Scroll to the bottom of the container
+            var container = document.getElementById("messageContainer");
+            container.scrollTop = container.scrollHeight;
+        });
+
+        connection.start().then(function () {
+            console.log("Connected to hub");
+        }).catch(function (err) {
+            console.error("Error connecting to hub: " + err.toString());
+        });
+
+        function sendMessage() {
+            var message = $("#inputMessageText").val();
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            // Append the sent message immediately
+            $("#messageContainer").append("You: " + message + "<br/>");
+
+            // Scroll to the bottom of the container
+            var container = document.getElementById("messageContainer");
+            container.scrollTop = container.scrollHeight;
+
+            // Clear the input field
+            $("#inputMessageText").val("");
+
+            // Prevent the form from submitting in the traditional way
+            return false;
+        }
+    </script>
+
+}

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Biodent.Models.SubProthesisModel>
+
+@{
+    ViewBag.Title = "SubProthesis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <!--Header Button Region-->
+            <div class="card-header">
+                <div class="col-md-2">
+                    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary" })
+                </div>
+
+            </div>
+            <!--/.Header Button Region-->
+            <div class="card-body">
+                <table id="example1" class="table table-hover table-sm dataTable" role="grid">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting">
+                                Prothesis Name
+                            </th>
+                            <th>
+                                SubProthesis Name
+                            </th>
+
+                            <th>
+                                Sale Price
+                            </th>
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">
+                                    @Html.DisplayFor(modelItem => item.ProthesisName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SubProthesisName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalePrice)
+                                </td>
+
+                                <td class="dtBtnPosition">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.SubProID }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.SubProID }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //$("#example1").DataTable().fnDestroy();
+        $("#example1").dataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            destroy: true,
+            //paging:false,
+            //columnDefs: [
+            //    {
+            //        targets: [3],
+            //        render: function (data, type, row) {
+            //            //return data == '1' ? 'free' : 'paid'
+            //            switch (data) {
+            //                case "1": return 'SuperUser'; break;
+            //                case "2": return 'Public'; break;
+            //                case "3": return 'Admin'; break;
+            //                case "4": return 'Verification Officer'; break;
+            //                case "5": return 'Enrollment Officer'; break;
+            //                default: return 'N/A';
+            //            }
+            //        }
+            //    }
+            //],
+
+        });
+    });
+</script>

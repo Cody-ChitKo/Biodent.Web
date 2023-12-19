@@ -1,0 +1,109 @@
+﻿@model Biodent.Models.UsersModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biodent Registration | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+@* <body class="login-page" style="background-image: url('../dist/img/biodent_background_logo.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-repeat: no-repeat; ">
+    *@
+<body class="login-page" style="background-color: #06275c; background-repeat: no-repeat;background-attachment: fixed; background-size: cover; background-repeat: no-repeat; ">
+
+        @using (Html.BeginForm("Login", "Login"))
+    {
+        @*<div class="login-box">*@
+        <div class="login-logo">
+            <a href="#" style="color:white !important;"><img src="../dist/img/biodent_logo_icon.ico" class="brand-image img-circle elevation-3" style="opacity: .8;width: 50px; height: 50px;"><b class="text-orange">Bio</b>dent Myanmar</a>
+        </div>
+        <div class="login-logo">
+            <p style="color: gold;"><b><i>Let's Make Better Smiles Together. </i></b></p>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card" style="border-radius: 25px !important;border: 2px solid #827b69 !important;padding: 20px 20px 0 20px!important;-webkit-box-shadow: 0px 16px 32px 0px rgba(0,0,0,0.75);-moz-box-shadow: 0px 16px 32px 0px rgba(0,0,0,0.75);box-shadow: 0px 16px 32px 0px rgba(0,0,0,0.75);margin:0px 15% 0px 15%">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg" style="font-size:20px"><b>Please enter your login information.</b></p>
+
+                <form>
+                    <div class="input-group mb-3">
+
+                        @*<input type="email" class="form-control" placeholder="Email" value="Model.Email">*@
+                        @Html.TextBoxFor(model => model.UsersName, new { placeholder = "Email", @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.UsersName, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(model => model.Password, new { placeholder = "Password", @class = "form-control", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remmember Password
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-5 text-right">
+                            <input type="submit" value="Login" class="btn btn-primary float-right" style="padding:0.5rem 2rem;" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("ForgotPassword","Login")">ForgotPassword ?</a>
+                            <a href="@Url.Action("Index","Register")" class="float-right" style="text-decoration:underline;">Register</a>
+                            @*<button type="submit" class="btn btn-primary btn-block">Sign In</button>*@
+                            @*@Html.ActionLink("Sign In","Login","ssbLogin", new { @class = "btn btn-primary"})*@
+                        </div>
+                    </div>
+                </form>
+
+                <p class="mt-2">Copyright &copy; <a href="https://www.facebook.com/netfix.technology/">Netfix Technology </a></p>
+
+            </div>
+        </div>
+
+    }
+
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>
+
+

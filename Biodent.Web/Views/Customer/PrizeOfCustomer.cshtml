@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Biodent.Models.PrizesModel>
+
+<div class="card card-info">
+
+    <table id="example1" class="table table-hover table-sm dataTable" role="grid">
+        <thead>
+            <tr role="row">
+                <th class="sorting">
+                    GiftCard Code
+                </th>
+
+                <th>
+                    Gifrcard Name
+                </th>
+                <th>
+                    Gifrcard Image
+                </th>
+                <th>
+                    Withdraw Status
+                </th>
+                <th>
+                    CanWithdraw
+                </th>
+                <th>
+                    Action
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr role="row" class="odd">
+                    <td class="sorting_1">
+                        @Html.DisplayFor(modelItem => item.GiftCardCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiftCardName)
+                    </td>
+                    <td>
+                        <img src="#" class="img-responsive" id="giftcardImage" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsWithdrawString)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CanWithdrawString)
+                    </td>
+                    
+                    <td class="dtBtnPosition">
+                        @Html.ActionLink("WithDraw", "DrawPrize", new { PrizeId = item.PrizeId }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

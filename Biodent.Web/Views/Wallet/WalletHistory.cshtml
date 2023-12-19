@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Biodent.Models.WalletModel>
+
+<h1>Wallet History</h1>
+
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <table id="example1" class="table table-sm table-hover dataTable" role="grid">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Wallet Amount
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Add Date
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Approve Date
+                            </th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Status
+                            </th>
+
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Pay Method
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.WalletAmount)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AddDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApproveDate)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PayMethodName)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>

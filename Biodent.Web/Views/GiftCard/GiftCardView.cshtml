@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Biodent.Models.GiftCardModel>
+
+@foreach (var item in Model)
+{
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            @Html.DisplayFor(modelItem => item.PackageName)
+            <address>
+                <strong>@Html.DisplayFor(modelItem => item.GiftCardCode)</strong><br>
+                @Html.DisplayFor(modelItem => item.GiftCardName)<br>
+                <img src="data:image/png;base64,@(@Html.DisplayFor(modelItem => item.GiftCardImageUrl))" alt="Giftcard Image" />
+            </address>
+        </div>
+        
+    </div>
+    <!-- /.row -->
+}

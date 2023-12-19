@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Biodent.Models.DepartmentIncomeModel>
+@{
+    ViewBag.Title = "EachCaseType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("EachCaseType", "Financial", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-sm-3">
+            <span>From Data :</span> <input type="datetime" id="fromdate" name="FromDate" />
+        </div>
+        <div class="col-sm-3">
+            <span>To Date :</span> <input type="datetime" id="todate" name="ToDate" />
+        </div>
+        <div class="col-sm-3">
+            <label></label>
+            <input type="submit" value="Search" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Income By Department</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-sm table-hover">
+                        <thead>
+                            <tr role="row">
+                                <th>
+                                    Department
+                                </th>
+                                <th>
+                                    Case Type
+                                </th>
+                                <th>
+                                    Qty
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr role="row" class="odd">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DepartmentName)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CaseType)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Qty)
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+}
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+<link href="~/Scripts/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    //issueDate
+    $(function () {
+
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        var issuedate = new Date();
+        var myissuedate = new Date(issuedate.getFullYear(), issuedate.getMonth(), issuedate.getDate() + 5).toISOString().slice(0, 10);
+        $("#fromdate").datepicker();
+
+        $("#todate").datepicker();
+
+        $(".issueDate").on("change", function () {
+
+        });
+    });
+
+
+</script>
+

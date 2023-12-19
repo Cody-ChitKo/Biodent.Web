@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Biodent.Models.ServiceModel>
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h4>Biodent Services</h4>
+        @foreach (var item in Model)
+        {
+            <div class="post">
+                <div class="user-block">
+                    <img src="data:image/png;base64,@(@Html.DisplayFor(modelItem => item.ImagePathUrl))" alt="ServiceImage" />
+                    <span class="username">
+                        <a href="#">@Html.DisplayFor(modelItem => item.ServiceHeader)</a>
+                    </span>
+                    <span class="description">@Html.DisplayFor(modelItem => item.ServicePrice)</span>
+                </div>
+                <!-- /.user-block -->
+                <p>
+                    @Html.DisplayFor(modelItem => item.ServiceType)
+                </p>
+
+                <p>
+                    @Html.DisplayFor(modelItem => item.ServiceDescription)
+                </p>
+            </div>
+
+        }
+        
+
+       
+    </div>
+</div>

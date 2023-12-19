@@ -1,0 +1,81 @@
+﻿@model Biodent.Models.ReviewModel
+
+@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.InvNo)
+        @Html.HiddenFor(model => model.InvoiceID)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Description</label>
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.ReviewDesp, new
+                    {
+                        @class = "form-control",
+                        cols = "50",
+                        rows = "12",
+                        //@title = "Please Enter Your Review",
+                        @tabindex = "0",
+                        @align = "left",
+                        @autofocus = "true",
+                        @draggable = "true",
+                        @minlength = "5",
+                        @required = "true"
+                    })
+                @Html.ValidationMessageFor(model => model.ReviewDesp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <spam class="text-warning">
+                    <i class="ratingStar far fa-star" data-value="1"></i>
+                    <i class="ratingStar far fa-star" data-value="2"></i>
+                    <i class="ratingStar far fa-star" data-value="3"></i>
+                    <i class="ratingStar far fa-star" data-value="4"></i>
+                    <i class="ratingStar far fa-star" data-value="5"></i>
+                </spam>
+                <input type="hidden" name="Rating" id="ratingValue" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" /> || @Html.ActionLink("Back to List", "Index", "Review", new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<style>
+    .ratingStar {
+        font-size: 35px; /* You can adjust the size as needed */
+        cursor: pointer;
+    }
+
+        .ratingStar.fas {
+            color: #FFD700; /* Color for filled stars */
+        }
+</style>
+<script>
+
+    $(document).ready(function () {
+        $(".ratingStar").on("click", function () {
+            var ratingValue = $(this).data("value");
+            $("#ratingValue").val(ratingValue);
+            $(".ratingStar").removeClass("fas").addClass("far");
+            $(this).prevAll().andSelf().addClass("fas").removeClass("far");
+        });
+    });
+
+</script>

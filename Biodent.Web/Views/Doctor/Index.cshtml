@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Biodent.Models.DoctorModel>
+
+@{
+    ViewBag.Title = "Doctor";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary far fa-plus-square" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Clinic Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsersName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DoctorID }, new { @class = "btn btn-primary fas fa-edit" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DoctorID }, new { @class = "btn btn-danger fas fa-times-circle" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,312 @@
+﻿<!-- Sidebar Menu -->
+<nav class="mt-2">
+
+    <ul class="nav nav-pills nav-sidebar sidebar-menu flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+        <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","DashBoard")" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p class="text">Dashboard</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("ReviewList","Review")" class="nav-link">
+                        @*<i class="nav-icon fas fa-th-large text-danger"></i>*@
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p class="text">Review List</p>
+                    </a>
+                </li>
+
+            </ul>
+          </li>
+        <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    User Management
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            System User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Users")" class="nav-link">
+                                <i class="nav-icon fas fa-user text-danger"></i>
+                                <p class="text">Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","AccountLevel")" class="nav-link">
+                                <i class="nav-icon fas fa-key text-danger"></i>
+                                <p class="text">Account Level</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Control")" class="nav-link">
+                                <i class="nav-icon fas fa-key text-danger"></i>
+                                <p class="text">Control</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","UserPermission")" class="nav-link">
+                                <i class="nav-icon fas fa-key text-danger"></i>
+                                <p class="text">User Permission</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","GenerateNo")" class="nav-link">
+                                <i class="nav-icon fas fa-key text-danger"></i>
+                                <p class="text">GenerateNo</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="@Url.Action("Index","Backup")" class="nav-link">
+                                <i class="nav-icon fas fa-th-large text-danger"></i>
+                                <p class="text">Database Backup</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Clinic
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item active">
+                            <a href="@Url.Action("NewClinic","Customer")" class="nav-link">
+                                <i class="nav-icon fa fa-address-card"></i>
+                                <p class="text">New Clinic</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Customer")" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p class="text">Clinic List</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link active">
+                @*<i class="nav-icon fas fa-users"></i>*@
+                @*<i class="nav-icon fas fa-copy"></i>*@
+                <i class="nva-icon fas fa-cog"></i>
+                <p>
+                    Biodent Operation
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Department")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Department</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Prothesis")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Prothesis</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","SubProthesis")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">SubProthesis</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Region")" class="nav-link">
+                        <i class="nav-icon fas fa-user text-danger"></i>
+                        <p class="text">Region</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Package")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Package</p>
+                    </a>
+                </li>
+
+                 <li class="nav-item active">
+                    <a href="@Url.Action("Index","GiftCard")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Giftcard</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","PayMethod")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Payment Method</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","ServiceType")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Service Type</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("Index","Service")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Biodent Services</p>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link active">
+                <i class="nva-icon fas fa-cog"></i>
+                <p>
+                    Order Management
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item active">
+                    <a href="@Url.Action("NewOrders","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">New Orders</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("ProcessOrder","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Processing Orders</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("DeliOrders","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Delivering Order</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("ReceivedOrders","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Received Order</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("CloseOrders","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Close Order</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("CompletedOrders","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Completed Order</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("ToothImage","Invoice")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Tooth Simple</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-th mr-1"></i>
+                <p>
+                    Financial Operation
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            
+            <ul class="nav nav-treeview">
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("WalletNewList","Wallet")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Wallet</p>
+                    </a>
+                </li>
+
+                <li class="nav-item active">
+                    <a href="@Url.Action("IncomeByEachDepartment","Financial")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Income By Department</p>
+                    </a>
+                </li>
+
+                    <li class="nav-item active">
+                        <a href="@Url.Action("EachCaseType","Financial")" class="nav-link">
+                            <i class="nav-icon fas fa-th-large text-danger"></i>
+                            <p class="text">Income By CaseType</p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="@Url.Action("BalanceOrder","Financial")" class="nav-link">
+                            <i class="nav-icon fas fa-th-large text-danger"></i>
+                            <p class="text">Balance Orders</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="@Url.Action("PaymentReceipt","Financial")" class="nav-link">
+                            <i class="nav-icon fas fa-th-large text-danger"></i>
+                            <p class="text">Payment Receipt</p>
+                        </a>
+                    </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Chats")" class="nav-link">
+                        <i class="nav-icon fas fa-th-large text-danger"></i>
+                        <p class="text">Chat</p>
+                    </a>
+                </li>
+                </ul>
+        </li>
+
+        </ul>
+</nav>
+<!-- /.sidebar-menu -->

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Biodent.Models.UsersModel>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <tr role="row" class="odd">
+            <td class="sorting_1">@Html.DisplayFor(modelItem => item.UsersName)</td>
+        </tr>
+        <br />
+    }
+</div>

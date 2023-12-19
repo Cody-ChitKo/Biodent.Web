@@ -1,0 +1,93 @@
+﻿@model Biodent.Models.UsersModel
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="card card-info">
+
+                        <div class="card-header">
+                            <h2 class="card-title">Profile</h2>
+                        </div>
+                        @Html.HiddenFor(model => model.UsersID)
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="exampleInputCustomerName">UsersName</label>
+                                @Html.EditorFor(model => model.UsersName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="exampleInputCustomerName">Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="exampleInputPhone">Phone</label>
+                                @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="exampleInputCreateDate">Passwrod</label>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @readonly = true, @class = "form-control" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10" style="margin-bottom:20px;">
+                                <input type="submit" value="Update" class="btn btn-primary" />
+                                @*@Html.ActionLink("Back to List", "Index", "UserLevel", new { @class = "btn btn-primary" })*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-5">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="../../dist/img/user4-128x128.jpg"
+                                     alt="User profile picture">
+                            </div>
+
+                            <p class="text-muted text-center">Yangon</p>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>WalletAmount</b> <a class="float-right">@Html.DisplayFor(model => model.WalletAmount)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Package Amount</b> <a class="float-right">@Html.DisplayFor(model => model.PackageAmount)</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Package Expire</b> <a class="float-right">@Html.DisplayFor(model => model.PackageExpire)</a>
+                                </li>
+                            </ul>
+
+                            <a href="@Url.Action("AddWallet","Wallet")" class="btn btn-primary btn-block"><b>Add Wallet</b></a>
+                            <a href="@Url.Action("PackageView","Package")" class="btn btn-primary btn-block"><b>Packages</b></a>
+                            <a href="@Url.Action("PrizeOfCustomer","Customer")" class="btn btn-primary btn-block"><b>Prizes</b></a>
+                            <a href="@Url.Action("ChangePassword","Customer")" class="btn btn-primary btn-block"><b>ChangePassword</b></a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+}
+

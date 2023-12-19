@@ -1,0 +1,183 @@
+﻿@model Biodent.Models.InvoiceModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+
+        <div class="card card-body">
+            <div class="card-header">
+                <h3 class="card-title">@Html.DisplayFor(model => model.UsersName)</h3>
+            </div>
+            @Html.HiddenFor(model => model.InvoiceID)
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Patient Name</label>
+                    @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @readonly = true, @class = "pname form-control" } })
+                </div>
+                <div class="col-sm-4">
+                    <label>Doctor Name</label>
+                    @Html.EditorFor(model => model.DoctorName, new { htmlAttributes = new { @readonly = true, @class = "doctorname form-control" } })
+                </div>
+                <div class="col-sm-4">
+                    <label>Total Amount</label>
+                    @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @readonly = true, @id = "TotalAmount", @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Patient Age</label>
+                    @Html.EditorFor(model => model.P_Age, new { htmlAttributes = new { @readonly = true, @class = "page form-control" } })
+                </div>
+
+                <div class="col-sm-4">
+                    <label>Invoice Date</label>
+                    @Html.EditorFor(model => model.InvDate, new { htmlAttributes = new { @class = "InvDate form-control" } })
+                </div>
+
+                <div class="col-sm-2">
+                    <label>Discount</label>
+                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "chDiscount form-control" } })
+
+                </div>
+                <div class="col-sm-2">
+                    <label>Discount With</label>
+                    <select id="biodentDiscount" class="form-control">
+                        <option>-</option>
+                        <option>Percent</option>
+                        <option>Amount</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Patient Sex</label>
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @readonly = true, @class = "psex form-control" } })
+                </div>
+                <div class="col-sm-4">
+                    <label>Issue Date</label>
+                    @Html.EditorFor(model => model.IssueDate, new { htmlAttributes = new { @class = "issueDate form-control" } })
+                </div>
+                <div class="col-sm-4">
+                    <label>Net Amount</label>
+                    @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "netAmount form-control" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label>Teeth Shade</label>
+                    @Html.EditorFor(model => model.TeethShade, new { htmlAttributes = new { @readonly = true, @class = "teethshade form-control" } })
+                </div>
+
+                <div class="col-sm-4">
+                    <label>Tooth Simple File</label>
+                    @Html.EditorFor(model => model.ToothSimpleFile, new { htmlAttributes = new { @readonly = true, @class = "teethshade form-control" } })
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>Remark</label>
+                    @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @readonly = true, @class = "remark form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-info">
+        <div class="care-body">
+            <table class="table table-sm">
+                <tr>
+                    <td>Prothesis</td>
+                    <td>Sub Prothesis</td>
+                    <td>ToothNo</td>
+                    <td>Price</td>
+                    <td>Qty</td>
+                    <td>Amount</td>
+                    <td>Case Type</td>
+                </tr>
+                @foreach (var saleItem in Model.invDetail)
+                {
+                    <tr class="mycontainer" id="mainrow">
+
+                        <td>
+                            @Html.DisplayFor(x => saleItem.ProthesisName, new { @class = "pid form-control" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => saleItem.SubProthesisName, new { @class = "form-control" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => saleItem.ToothNo, new { htmlAttributes = new { @class = "form-control" } })
+                        </td>
+                        <td style="width:10%">
+                            @Html.DisplayFor(x => saleItem.Price, new { htmlAttributes = new { @class = "txtprice form-control" } })
+                        </td>
+                        <td style="width: 10%">
+                            @Html.DisplayFor(x => saleItem.Qty, new { htmlAttributes = new { @class = "qty form-control" } })
+                        </td>
+                        <td style="width: 10%">
+                            @Html.DisplayFor(x => saleItem.Amount, new { htmlAttributes = new { @class = "form-control disabled" } })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => saleItem.CaseType)
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="card-footer">
+            <div style="padding:10px 0; text-align:right">
+                <input type="submit" value="Approve" class="btn btn-primary" /> 
+                @*@Html.ActionLink("Approve", "Approve", "Invoice", new { Model }, new { @class = "btn btn-primary" })*@
+                @Html.ActionLink("Pending", "Pending", "Invoice", new { Model }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Reject", "Reject", "Invoice", new { Model }, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+
+<script type="text/javascript">
+    //issueDate
+    $(function () {
+        $(".issueDate").datepicker();
+    });
+
+
+    $('.chDiscount').on('change', function () {
+        var biodentDis = $("#biodentDiscount option:selected").text();
+
+        if (biodentDis == "-") {
+            alert("Select Percent or Amount");
+            $('.chDiscount').val('0');
+        }
+        var main = $('#TotalAmount').val();
+        var disc = $('.chDiscount').val();
+
+        if (biodentDis == 'Percent') {
+            
+            var dec = (disc / 100).toFixed(2); //its convert 10 into 0.10
+            var mult = main * dec; // gives the value for subtract from main value
+            var discont = main - mult;
+            $('.netAmount').val(discont);
+        }
+        else {
+            //var main = $('#TotalAmount').val();
+            //var disc = $('.chDiscount').val();
+            var discont = main - disc;
+            $('.netAmount').val(discont);
+        }
+
+    })
+
+
+</script>

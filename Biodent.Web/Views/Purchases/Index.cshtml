@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Biodent.Models.PurchaseModel>
+
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            
+            <!-- /.card-header -->
+            <div class="card-body">
+
+                <table id="example1" class="table table-hover table-sm dataTable">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 50.55px;" aria-label="Browser: activate to sort column ascending">
+                                PurchaseType
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 50.55px;" aria-label="Browser: activate to sort column ascending">
+                                Description
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 50.55px;" aria-label="Browser: activate to sort column ascending">
+                                Amount
+                            </th>
+
+                            <th class="sorting_asc_disabled sorting_desc_disabled" tabindex="0" rowspan="1" colspan="1" style="width: 50.267px;" aria-label="CSS grade: activate to sort column ascending">
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.PurchaseType)</td>
+                                <td >@Html.DisplayFor(modelItem => item.Pur_Desc)</td>
+                                <td>@Html.DisplayFor(modelItem=> item.Pur_Amount)</td>
+                                <td class="dtBtnPosition">
+                                    @Html.ActionLink("Payment", "Payment", new { id = item.PurchaseId }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>

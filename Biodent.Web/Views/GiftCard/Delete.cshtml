@@ -1,0 +1,47 @@
+﻿@model Biodent.Models.GiftCardModel
+
+@{
+    ViewBag.Title = "Giftcard Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiftCardCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiftCardCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiftCardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiftCardName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PackageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackageName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.GiftCardId)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index", "Doctor", new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

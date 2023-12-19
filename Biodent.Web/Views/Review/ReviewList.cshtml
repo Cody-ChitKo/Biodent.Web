@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Biodent.Models.ReviewModel>
+
+@{
+    ViewBag.Title = "Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    var defaultStar = 5 - item.Rating;
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bell"></i>
+                        @Html.DisplayFor(model => item.UsersName)
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <blockquote>
+                        <p>@Html.DisplayFor(model => item.InvNo) </p>
+                        <p>@Html.DisplayFor(model => item.ReviewDesp)</p>
+                        <p>
+                            @for (int i = 1; i <= item.Rating; i++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                            @for (int i = 1; i < defaultStar; i++)
+                            {
+                                <i class="far fa-star"></i>
+                            }
+                        </p>
+                        <small>@Html.DisplayFor(model => item.ReviewDate)</small>
+                    </blockquote>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- ./col -->
+
+    </div>
+}

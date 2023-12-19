@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Biodent.Models.InvoiceModel>
+
+@{
+    ViewBag.Title = "ProcessOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+
+                <table id="example1" class="table table-sm table-hover">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                LAB Sheet No
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Clinic Name
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                TotalAmount
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Discount
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Issue Date
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Invoice Date
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Status
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr role="row" class="odd">
+                                <td class="sorting_1">@Html.DisplayFor(modelItem => item.InvNo)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UsersName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Discount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IssueDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InvDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delivered", "Delivered", new { id = item.InvoiceID }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Print", "OrderPrint", new { id = item.InvoiceID }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+<!-- jQuery -->
+<script src="~/Scripts/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="~/Scripts/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#example1").dataTable({
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    });
+</script>
